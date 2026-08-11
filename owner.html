@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Панель владельца | Velora Beauty</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a href="index.html" class="brand">Velora Beauty</a>
+        <nav class="nav-links">
+          <a href="index.html#home" data-i18n-key="nav.home">Главная</a>
+          <a href="about.html" data-i18n-key="nav.about">О нас</a>
+          <a href="contacts.html" data-i18n-key="nav.contacts">Контакты</a>
+          <a href="delivery.html" data-i18n-key="nav.delivery">Доставка</a>
+        </nav>
+        <div class="language-currency-switcher">
+          <select id="language-select" onchange="setLocale(this.value)">
+            <option value="ru">🇷🇺 РУС</option>
+            <option value="en-US">🇺🇸 ENG</option>
+            <option value="en-GB">🇬🇧 GBP</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="de">🇩🇪 DEU</option>
+            <option value="fr">🇫🇷 FRA</option>
+            <option value="es">🇪🇸 ESP</option>
+            <option value="it">🇮🇹 ITA</option>
+            <option value="pt">🇵🇹 POR</option>
+            <option value="tr">🇹🇷 TUR</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="zh">🇨🇳 中文</option>
+          </select>
+          <select id="currency-select" onchange="setCurrency(this.value)">
+            <option value="KZT">KZT ₸</option>
+            <option value="USD">USD $</option>
+            <option value="GBP">GBP £</option>
+            <option value="SAR">SAR ﷼</option>
+            <option value="EUR">EUR €</option>
+            <option value="KRW">KRW ₩</option>
+            <option value="JPY">JPY ¥</option>
+            <option value="CNY">CNY ¥</option>
+          </select>
+        </div>
+      </header>
+
+      <main>
+        <section class="section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Панель владельца</p>
+              <h2>Управление товарами и заказами</h2>
+            </div>
+          </div>
+
+          <div id="owner-gate" class="owner-gate">
+            <div class="panel owner-lock-panel">
+              <h3>Доступ только для владельца</h3>
+              <p>Введите пароль, чтобы открыть панель управления.</p>
+              <form id="owner-access-form" class="owner-access-form">
+                <input type="password" name="password" placeholder="Пароль" required />
+                <button class="primary-btn" type="submit">Войти</button>
+              </form>
+            </div>
+          </div>
+
+          <div id="owner-panel-content" hidden>
+            <div class="owner-grid">
+              <div class="panel">
+                <h3>Добавить товар</h3>
+                <form id="add-product-form" class="owner-form">
+                  <div class="field-grid">
+                    <label>
+                      <span>Название</span>
+                      <input name="name" required placeholder="Velora Lip Tint" />
+                    </label>
+                    <label>
+                      <span>Категория</span>
+                      <input name="category" required placeholder="Макияж" />
+                    </label>
+                    <label>
+                      <span>Цена</span>
+                      <input type="number" name="price" required min="0" step="0.01" />
+                    </label>
+                    <label>
+                      <span>Остаток</span>
+                      <input type="number" name="stock" required min="0" step="1" />
+                    </label>
+                    <label>
+                      <span>URL изображения</span>
+                      <input name="image" placeholder="https://..." />
+                    </label>
+                    <label>
+                      <span>Описание</span>
+                      <textarea name="description" rows="3" placeholder="Долговечный сатиновый финиш..."></textarea>
+                    </label>
+                  </div>
+                  <button class="primary-btn" type="submit">Добавить товар</button>
+                </form>
+                <div id="owner-products" class="owner-product-list"></div>
+              </div>
+              <div class="panel">
+                <h3>Заказы клиентов</h3>
+                <form data-action="add-order" class="owner-form" style="margin-bottom: 20px;">
+                  <div class="field-grid">
+                    <label>
+                      <span>Имя клиента</span>
+                      <input name="customerName" required placeholder="Иван Иванов" />
+                    </label>
+                    <label>
+                      <span>Email</span>
+                      <input type="email" name="email" required placeholder="client@example.com" />
+                    </label>
+                    <label>
+                      <span>Телефон</span>
+                      <input name="phone" required placeholder="+7 700 000 00 00" />
+                    </label>
+                    <label>
+                      <span>Адрес</span>
+                      <input name="address" required placeholder="Алматы, ул. Ленина 10" />
+                    </label>
+                    <label>
+                      <span>Товар</span>
+                      <select id="order-product-select" name="productId" required>
+                        <option value="">Выберите товар</option>
+                      </select>
+                    </label>
+                    <label>
+                      <span>Количество</span>
+                      <input type="number" name="quantity" min="1" value="1" required />
+                    </label>
+                  </div>
+                  <button class="primary-btn" type="submit">Добавить заказ</button>
+                </form>
+                <div id="order-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

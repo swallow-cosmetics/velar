@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velora Beauty | Премиум косметика</title>
+    <meta
+      name="description"
+      content="Современный интернет-магазин косметики с премиальной уходовой косметикой, макияжем и парфюмерией."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a href="#home" class="brand">Velora Beauty</a>
+        <nav class="nav-links">
+          <a href="index.html#home" data-i18n-key="nav.home">Главная</a>
+          <a href="about.html" data-i18n-key="nav.about">О нас</a>
+          <a href="contacts.html" data-i18n-key="nav.contacts">Контакты</a>
+          <a href="delivery.html" data-i18n-key="nav.delivery">Доставка</a>
+        </nav>
+        <div class="language-currency-switcher">
+          <select id="language-select" onchange="setLocale(this.value)">
+            <option value="ru">🇷🇺 РУС</option>
+            <option value="en-US">🇺🇸 ENG</option>
+            <option value="en-GB">🇬🇧 GBP</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="de">🇩🇪 DEU</option>
+            <option value="fr">🇫🇷 FRA</option>
+            <option value="es">🇪🇸 ESP</option>
+            <option value="it">🇮🇹 ITA</option>
+            <option value="pt">🇵🇹 POR</option>
+            <option value="tr">🇹🇷 TUR</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="zh">🇨🇳 中文</option>
+          </select>
+          <select id="currency-select" onchange="setCurrency(this.value)">
+            <option value="KZT">KZT ₸</option>
+            <option value="USD">USD $</option>
+            <option value="GBP">GBP £</option>
+            <option value="SAR">SAR ﷼</option>
+            <option value="EUR">EUR €</option>
+            <option value="KRW">KRW ₩</option>
+            <option value="JPY">JPY ¥</option>
+            <option value="CNY">CNY ¥</option>
+          </select>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">☰</button>
+      </header>
+
+      <main>
+        <section class="hero" id="home">
+          <div class="hero-copy">
+            <p class="eyebrow" data-i18n-key="hero.eyebrow">НОВАЯ КОЛЛЕКЦИЯ · 2026</p>
+            <h1 data-i18n-key="hero.title">Поднимите свою рутину на новый уровень с премиальной косметикой.</h1>
+            <p data-i18n-key="hero.subtitle">
+              Откройте для себя уход, макияж и парфюмерию, созданные для сияния с утра до вечера.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-btn" data-scroll="catalog" data-i18n-key="hero.cta">Купить коллекцию</button>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <strong>12k+</strong>
+                <span data-i18n-key="hero.stat1.label">довольных клиентов</span>
+              </div>
+              <div>
+                <strong>4.9/5</strong>
+                <span data-i18n-key="hero.stat2.label">оценка покупателей</span>
+              </div>
+              <div>
+                <strong>24/7</strong>
+                <span data-i18n-key="hero.stat3.label">поддержка</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-card">
+            <img
+              src="images/hero.jpg"
+              alt="Luxury cosmetics display"
+            />
+            <div class="hero-card-content">
+              <p data-i18n-key="hero.bestseller">Лидер продаж</p>
+              <h3 data-i18n-key="hero.product">Сияющая сыворотка</h3>
+              <span data-i18n-key="hero.product.desc">Осветляющее увлажнение с ниацинамидом</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="catalog">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" data-i18n-key="catalog.eyebrow">Каталог</p>
+              <h2 data-i18n-key="catalog.title">Подобранные бестселлеры для каждого сияния.</h2>
+            </div>
+            <p data-i18n-key="catalog.desc">12 премиальных товаров с доставкой по всему миру.</p>
+          </div>
+          <div class="product-grid" id="product-grid"></div>
+        </section>
+
+        <section class="section" id="cart">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Checkout</p>
+              <h2>Fast cart and secure payment.</h2>
+            </div>
+            <p>Choose Kaspi Pay for a seamless digital checkout.</p>
+          </div>
+          <div class="checkout-layout">
+            <div class="panel cart-panel">
+              <h3 data-i18n-key="cart.header">Ваша корзина</h3>
+              <div id="cart-items"></div>
+            </div>
+            <div class="panel checkout-panel">
+              <h3 data-i18n-key="cart.checkout_title">Данные доставки</h3>
+              <form id="checkout-form">
+                <div class="field-grid">
+                  <label>
+                    <span data-i18n-key="form.name">Полное имя</span>
+                    <input name="name" required placeholder="Амина Карим" />
+                  </label>
+                  <label>
+                    <span data-i18n-key="form.email">Email</span>
+                    <input type="email" name="email" required placeholder="amina@example.com" />
+                  </label>
+                  <label>
+                    <span data-i18n-key="form.phone">Телефон</span>
+                    <input name="phone" required placeholder="+7 700 000 00 00" />
+                  </label>
+                  <label>
+                    <span data-i18n-key="form.address">Адрес</span>
+                    <input name="address" required placeholder="Алматы, Казахстан" />
+                  </label>
+                </div>
+                
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 102, 179, 0.2);">
+                  <h4 data-i18n-key="form.payment_method" style="margin-bottom: 12px; font-size: 0.95rem;">Способ оплаты</h4>
+                  <div class="payment-methods">
+                    <label style="display: flex; align-items: center; gap: 10px; padding: 12px; margin-bottom: 8px; background: #fde8ed; border-radius: 8px; cursor: pointer;">
+                      <input type="radio" name="payment_method" value="card" checked />
+                      <span>💳 <strong>Кредитная карта</strong> (Visa, Mastercard, AmEx)</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; padding: 12px; margin-bottom: 8px; background: #fde8ed; border-radius: 8px; cursor: pointer;">
+                      <input type="radio" name="payment_method" value="paypal" />
+                      <span>🅿️ <strong>PayPal</strong></span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; padding: 12px; margin-bottom: 8px; background: #fde8ed; border-radius: 8px; cursor: pointer;">
+                      <input type="radio" name="payment_method" value="apple" />
+                      <span>🍎 <strong>Apple Pay</strong></span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #fde8ed; border-radius: 8px; cursor: pointer;">
+                      <input type="radio" name="payment_method" value="google" />
+                      <span>🔵 <strong>Google Pay</strong></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div id="card-element" style="margin-top: 16px; padding: 12px; background: #ffffff; border: 1px solid rgba(255, 102, 179, 0.2); border-radius: 8px; display: none;"></div>
+                <input type="hidden" id="payment-token" name="payment_token" />
+
+                <div class="payment-info" style="margin-top: 16px; padding: 12px; background: #fcd0e0; border-radius: 8px;">
+                  <p data-i18n-key="form.payment_secure">✓ Платеж защищен и обработан безопасно через глобальные платежные системы.</p>
+                </div>
+                
+                <button class="primary-btn full-width" type="submit" data-i18n-key="form.submit" style="margin-top: 16px;">Оформить заказ</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="footer">
+        <p>Velora Beauty © 2026 · Премиальная косметика для современных ритуалов.</p>
+        <p>
+          <a href="about.html" data-i18n-key="nav.about">О нас</a> ·
+          <a href="contacts.html" data-i18n-key="nav.contacts">Контакты</a> ·
+          <a href="delivery.html" data-i18n-key="nav.delivery">Доставка</a>
+        </p>
+      </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <a href="https://wa.me/77056708020" class="whatsapp-fab" target="_blank" rel="noopener">Задать вопрос</a>
+    <script src="app.js"></script>
+  </body>
+</html>
